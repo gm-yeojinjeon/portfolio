@@ -53,18 +53,23 @@
         .box-glow { box-shadow: 0 0 20px rgba(57, 255, 20, 0.15); }
         .box-glow-hover:hover { box-shadow: 0 0 25px rgba(57, 255, 20, 0.3); }
 
-        /* Animation */
+        /* Scroll margin for fixed nav offset */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        /* Animation - Distance between char and dino increased */
         @keyframes walkAround {
-            0% { left: 5%; transform: scaleX(1); }
+            0% { left: 15%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
             50% { left: 88%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
-            100% { left: 5%; transform: scaleX(1); }
+            100% { left: 15%; transform: scaleX(1); }
         }
         @keyframes walkAroundDino {
             0% { left: 0%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
-            50% { left: 83%; transform: scaleX(-1); }
+            50% { left: 73%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
             100% { left: 0%; transform: scaleX(1); }
         }
@@ -91,9 +96,7 @@
 
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full bg-pixel-bg/90 backdrop-blur-md border-b border-pixel-green/40 z-40 py-3 px-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="font-pixel text-pixel-gold text-sm tracking-wider flex items-center gap-2 cursor-pointer" onclick="scrollToId('hero')">
-            </div>
+        <div class="max-w-6xl mx-auto flex justify-end items-center">
             <div class="flex gap-2 sm:gap-4 font-pixel text-[10px] sm:text-xs">
                 <button onclick="scrollToId('character')" class="px-3 py-1.5 border border-pixel-green/50 text-pixel-green hover:bg-pixel-green hover:text-black transition-all rounded">CHARACTER</button>
                 <button onclick="scrollToId('project')" class="px-3 py-1.5 border border-pixel-gold/50 text-pixel-gold hover:bg-pixel-gold hover:text-black transition-all rounded">PROJECTS</button>
@@ -108,7 +111,7 @@
         <section id="hero" class="relative bg-pixel-card border-2 border-pixel-green/60 rounded-xl p-8 sm:p-12 text-center box-glow overflow-hidden">
             <div class="absolute -top-12 -right-12 w-40 h-40 bg-pixel-green/10 rounded-full blur-3xl pointer-events-none"></div>
             
-            <span class="font-code text-xs text-pixel-cyan tracking-widest uppercase mb-2 block">// GAME MASTER (GM)</span>
+            <span class="font-code text-xs text-pixel-cyan tracking-widest uppercase mb-2 block">// GAME MASTER & PROJECT MANAGER</span>
             <h1 class="font-pixel text-2xl sm:text-4xl text-pixel-gold glow-gold mb-4 leading-tight">
                 GAME MASTER<br><span class="text-pixel-green glow-green">PORTFOLIO</span>
             </h1>
@@ -231,11 +234,11 @@
 
         <!-- SECTION 3: PROJECTS -->
         <section id="project" class="space-y-6">
-            <div class="flex justify-between items-end border-b border-pixel-border pb-3">
+            <div class="flex flex-wrap justify-between items-end border-b border-pixel-border pb-3 gap-2">
                 <h2 class="font-pixel text-sm sm:text-base text-pixel-gold flex items-center gap-2">
-                    <span class="text-pixel-green">[02]</span> QUEST & PROJECTS
+                    <span class="text-pixel-green">[02]</span> PROJECTS
                 </h2>
-                <span class="font-code text-xs text-gray-500">TOTAL: 07</span>
+                <span class="font-code text-xs text-gray-400 bg-pixel-card px-2.5 py-1 rounded border border-pixel-border">TOTAL: 07</span>
             </div>
 
             <!-- Project Grid -->
@@ -258,7 +261,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 유저 리텐션 증대 & 재런칭 이후 <strong class="text-pixel-green">역대 최고 매출 달성</strong>
+                        유저 리텐션 증대 & 재런칭 이후 <strong class="text-pixel-green">역대 최고 매출 달성</strong>
                     </div>
                 </div>
 
@@ -279,7 +282,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> CS 프로세스 개선으로 <strong class="text-pixel-green">유저 서비스 만족도 증대</strong> & 서비스 안정화
+                        CS 프로세스 개선으로 <strong class="text-pixel-green">유저 서비스 만족도 증대</strong> & 서비스 안정화
                     </div>
                 </div>
 
@@ -300,7 +303,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 어뷰징 제재로 <strong class="text-pixel-green">매출 피해 최소화</strong> & 쾌적한 글로벌 환경 구축
+                        어뷰징 제재로 <strong class="text-pixel-green">매출 피해 최소화</strong> & 쾌적한 글로벌 환경 구축
                     </div>
                 </div>
 
@@ -321,7 +324,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 성공적인 글로벌 런칭 및 <strong class="text-pixel-green">게임 콘텐츠 완성도 향상</strong> 기여
+                        성공적인 글로벌 런칭 및 <strong class="text-pixel-green">게임 콘텐츠 완성도 향상</strong> 기여
                     </div>
                 </div>
 
@@ -342,7 +345,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 축전 영상 업로드 당월 <strong class="text-pixel-green">평균 RT 12.7배 / 노출 5.3배 증가</strong>
+                        축전 영상 업로드 당월 <strong class="text-pixel-green">평균 RT 12.7배 / 노출 5.3배 증가</strong>
                     </div>
                 </div>
 
@@ -363,7 +366,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 브랜드 인지도 형성, <strong class="text-pixel-green">CBT 참여 유도 & 유저 접점 극대화</strong>
+                        브랜드 인지도 형성, <strong class="text-pixel-green">CBT 참여 유도 & 유저 접점 극대화</strong>
                     </div>
                 </div>
 
@@ -384,7 +387,7 @@
                         </div>
                     </div>
                     <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
-                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 테스트 기간 동안 <strong class="text-pixel-green">안정적인 정보 전달 및 소통 기반 마련</strong>
+                        테스트 기간 동안 <strong class="text-pixel-green">안정적인 정보 전달 및 소통 기반 마련</strong>
                     </div>
                 </div>
 
@@ -412,7 +415,8 @@
                         🏆 BTS Island: In The Seom
                     </div>
                     <p class="text-sm text-gray-300 leading-snug">
-                        팬덤 맞춤형 콘텐츠 등록, 당월 최근 3개월 내 <span class="text-pixel-green font-bold">평균 RT 12.7배 / 노출 5.3배 증가</span>
+                        팬덤 맞춤형 콘텐츠 등록, 당월 최근 3개월 내<br>
+                        <span class="text-pixel-green font-bold">평균 RT 12.7배 / 노출 5.3배 증가</span>
                     </p>
                 </div>
 
