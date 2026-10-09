@@ -85,6 +85,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .hero-title {
@@ -115,6 +117,7 @@
             animation: blink 1s infinite;
             box-shadow: 4px 4px 0px #39FF14;
             transition: transform 0.1s;
+            z-index: 2;
         }
 
         .press-start-btn:active {
@@ -125,6 +128,53 @@
         @keyframes blink {
             0%, 49% { opacity: 1; }
             50%, 100% { opacity: 0.3; }
+        }
+
+        /* === PIXEL CHARACTER ANIMATION === */
+        .pixel-character-container {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            pointer-events: none;
+        }
+
+        .pixel-character {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 24px;
+            height: 32px;
+            font-size: 28px;
+            line-height: 1;
+            animation: walkAround 12s infinite linear, bounce 0.4s infinite alternate;
+        }
+
+        @keyframes walkAround {
+            0% {
+                left: 5%;
+                transform: scaleX(1); /* 오른쪽 보고 걷기 */
+            }
+            48% {
+                transform: scaleX(1);
+            }
+            50% {
+                left: 90%;
+                transform: scaleX(-1); /* 좌우 반전하여 왼쪽 보고 걷기 */
+            }
+            98% {
+                transform: scaleX(-1);
+            }
+            100% {
+                left: 5%;
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes bounce {
+            0% { bottom: 0px; }
+            100% { bottom: 6px; } /* 걸어갈 때 들썩거림 */
         }
 
         /* === 2. PROFILE / STATS SECTION === */
@@ -268,6 +318,11 @@
         <div class="hero-title">GAME MASTER<br>PORTFOLIO</div>
         <div class="hero-subtitle">전여진 (JEON YEOJIN)</div>
         <button class="press-start-btn" onclick="scrollToMain()">PRESS START</button>
+
+        <!-- Walking Pixel Character at Bottom -->
+        <div class="pixel-character-container">
+            <div class="pixel-character">👾</div>
+        </div>
     </section>
 
     <!-- SECTION 2: CHARACTER -->
