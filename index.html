@@ -32,7 +32,7 @@
             font-size: 18px;
             line-height: 1.6;
             padding: 20px;
-            padding-top: 70px; /* 네비게이션 바 공간 확보 */
+            padding-top: 85px; /* 네비게이션 바 높이 확장 대응 */
             overflow-x: hidden;
         }
 
@@ -65,13 +65,13 @@
             left: 0;
             width: 100%;
             background-color: rgba(10, 10, 10, 0.95);
-            border-bottom: 3px solid #39FF14;
+            border-bottom: 4px solid #39FF14;
             display: flex;
             justify-content: center;
             gap: 15px;
-            padding: 10px;
+            padding: 12px 15px;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(57, 255, 20, 0.2);
+            box-shadow: 0 4px 15px rgba(57, 255, 20, 0.3);
         }
 
         .nav-btn {
@@ -79,8 +79,8 @@
             color: #FFD700;
             border: 2px solid #FFD700;
             font-family: 'Press Start 2P', 'Nanum Gothic', cursive;
-            font-size: 0.75rem;
-            padding: 6px 12px;
+            font-size: 0.9rem; /* 폰트 크기 확대 */
+            padding: 8px 16px; /* 버튼 여백 확대 */
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -88,7 +88,7 @@
         .nav-btn:hover {
             background-color: #FFD700;
             color: #000;
-            box-shadow: 0 0 8px #FFD700;
+            box-shadow: 0 0 10px #FFD700;
         }
 
         /* === PIXELATED BOX CONTAINER === */
@@ -117,7 +117,7 @@
 
         /* === 1. TITLE / COVER SECTION === */
         #hero {
-            height: 85vh;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -125,6 +125,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            margin-top: 10px; /* 상단 여백 정돈 */
         }
 
         .hero-title {
@@ -320,7 +321,6 @@
             font-weight: bold;
         }
 
-        /* 시선강조용 퀘스트 보상/핵심 성과 박스 */
         .key-result-box {
             background-color: #1a1a00;
             border: 1px dashed #FFD700;
@@ -398,7 +398,7 @@
                 <p><span style="color:#FFD700; font-weight:bold;">NAME:</span> 전여진</p>
                 <p><span style="color:#FFD700; font-weight:bold;">CLASS:</span> GAME MASTER (GM)</p>
                 <p><span style="color:#FFD700; font-weight:bold;">BIRTH:</span> 1995.10.16</p>
-                <p><span style="color:#FFD700; font-weight:bold;">CONTACT:</span> <a href="tel:01080337712" style="color:#39FF14;">010-8033-7712</a></p>
+                <p><span style="color:#FFD700; font-weight:bold;">CONTACT:</span> 010-8033-7712</p>
                 <p><span style="color:#FFD700; font-weight:bold;">EMAIL:</span> <a href="mailto:mittyeojin@gmail.com" style="color:#39FF14;">mittyeojin@gmail.com</a></p>
                 <p><span style="color:#FFD700; font-weight:bold;">EDU:</span> Manitoba Institute of Trades and Technology (Network and Computer Technology)</p>
                 <p><span style="color:#FFD700; font-weight:bold;">SKILL:</span> TOEIC 855 / 비즈니스 영어</p>
