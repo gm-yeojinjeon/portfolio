@@ -87,7 +87,6 @@
             white-space: nowrap;
         }
 
-        /* 모바일 화면 네비게이션 반응형 조정 */
         @media (max-width: 600px) {
             .sticky-nav {
                 gap: 5px;
@@ -122,7 +121,7 @@
         .pixel-title {
             font-family: 'Press Start 2P', cursive;
             font-size: 1rem;
-            color: #FFD700; /* 오락실 옐로우 */
+            color: #FFD700;
             text-shadow: 2px 2px #000000;
             margin-bottom: 20px;
             border-bottom: 2px dashed #39FF14;
@@ -190,7 +189,7 @@
             50%, 100% { opacity: 0.3; }
         }
 
-        /* === PIXEL CHARACTER & DINO ANIMATION (간격 넓힘) === */
+        /* === PIXEL CHARACTER & DINO ANIMATION === */
         .pixel-character-container {
             position: absolute;
             bottom: 12px;
@@ -211,7 +210,6 @@
             animation: walkAround 12s infinite linear, bounce 0.4s infinite alternate;
         }
 
-        /* 뒤따라오는 공룡 간격을 여유 있게 띄움 */
         .pixel-dino {
             position: absolute;
             bottom: 0;
@@ -232,7 +230,7 @@
         }
 
         @keyframes walkAroundDino {
-            0% { left: 2%; transform: scaleX(1); } /* 13% 차이 확보 */
+            0% { left: 2%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
             50% { left: 72%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
@@ -244,7 +242,7 @@
             100% { bottom: 6px; }
         }
 
-        /* === 2. PROFILE / STATS SECTION === */
+        /* === 2. PROFILE / STATS SECTION (게이지 바 간격 조정) === */
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -268,26 +266,28 @@
             align-items: center;
             justify-content: space-between;
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             line-height: 1.4;
-            gap: 8px;
+            gap: 12px; /* 텍스트와 게이지 바 간격 확보 */
         }
 
         .stat-label {
             color: #ffffff;
             font-weight: bold;
-            width: 140px;
+            width: 145px; /* 너비 조절 */
             flex-shrink: 0;
             text-shadow: 1px 1px #000;
+            word-break: break-all;
         }
 
         @media (max-width: 480px) {
             .stat-label {
-                width: 110px;
-                font-size: 0.62rem;
+                width: 115px;
+                font-size: 0.55rem; /* 모바일에서 글자 크기 미세 축소로 붙음 방지 */
             }
             .stat-row {
-                font-size: 0.65rem;
+                font-size: 0.6rem;
+                gap: 8px;
             }
         }
 
@@ -295,7 +295,7 @@
             flex-grow: 1;
             background-color: #111;
             border: 2px solid #39FF14;
-            height: 18px;
+            height: 16px;
             box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
             position: relative;
         }
@@ -309,7 +309,7 @@
         .stat-val {
             color: #FFD700;
             font-weight: bold;
-            width: 40px;
+            width: 38px;
             text-align: right;
             flex-shrink: 0;
             text-shadow: 1px 1px #000;
