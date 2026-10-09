@@ -31,8 +31,8 @@
             font-family: 'Nanum Gothic', sans-serif;
             font-size: 18px;
             line-height: 1.6;
-            padding: 20px;
-            padding-top: 85px;
+            padding: 15px;
+            padding-top: 80px;
             overflow-x: hidden;
         }
 
@@ -58,7 +58,7 @@
             text-decoration: underline;
         }
 
-        /* === STICKY QUICK NAV === */
+        /* === STICKY QUICK NAV (모바일 최적화) === */
         .sticky-nav {
             position: fixed;
             top: 0;
@@ -68,8 +68,9 @@
             border-bottom: 4px solid #39FF14;
             display: flex;
             justify-content: center;
-            gap: 15px;
-            padding: 12px 15px;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 8px;
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(57, 255, 20, 0.3);
         }
@@ -79,10 +80,24 @@
             color: #FFD700;
             border: 2px solid #FFD700;
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.9rem;
-            padding: 8px 16px;
+            font-size: 0.8rem;
+            padding: 8px 12px;
             cursor: pointer;
             transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        /* 모바일 화면 네비게이션 반응형 조정 */
+        @media (max-width: 600px) {
+            .sticky-nav {
+                gap: 5px;
+                padding: 8px 4px;
+            }
+            .nav-btn {
+                font-size: 0.65rem;
+                padding: 6px 8px;
+                border-width: 1px;
+            }
         }
 
         .nav-btn:hover {
@@ -99,14 +114,14 @@
                 0 0 0 4px #000000, 
                 0 0 0 8px #FFD700,
                 0 0 15px rgba(57, 255, 20, 0.4);
-            padding: 25px;
-            margin-bottom: 40px;
+            padding: 20px;
+            margin-bottom: 35px;
             position: relative;
         }
 
         .pixel-title {
             font-family: 'Press Start 2P', cursive;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #FFD700; /* 오락실 옐로우 */
             text-shadow: 2px 2px #000000;
             margin-bottom: 20px;
@@ -117,7 +132,7 @@
 
         /* === 1. TITLE / COVER SECTION === */
         #hero {
-            min-height: 75vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -125,32 +140,38 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .hero-title {
             font-family: 'Press Start 2P', cursive;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: #FFD700;
-            text-shadow: 4px 4px #ff0055, -4px -4px #00ffff;
+            text-shadow: 3px 3px #ff0055, -3px -3px #00ffff;
             margin-bottom: 20px;
             line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
         }
 
         .hero-subtitle {
             font-family: 'Nanum Gothic', sans-serif;
             font-weight: 700;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: #ffffff;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
 
         .press-start-btn {
             font-family: 'Press Start 2P', cursive;
-            font-size: 1.2rem;
+            font-size: 1rem;
             background-color: #FFD700;
             color: #000000;
-            padding: 15px 30px;
+            padding: 12px 24px;
             border: 4px solid #ffffff;
             cursor: pointer;
             animation: blink 1s infinite;
@@ -169,10 +190,10 @@
             50%, 100% { opacity: 0.3; }
         }
 
-        /* === PIXEL CHARACTER & DINO ANIMATION === */
+        /* === PIXEL CHARACTER & DINO ANIMATION (간격 넓힘) === */
         .pixel-character-container {
             position: absolute;
-            bottom: 15px;
+            bottom: 12px;
             left: 0;
             width: 100%;
             height: 40px;
@@ -185,34 +206,35 @@
             left: 0;
             width: 24px;
             height: 32px;
-            font-size: 28px;
+            font-size: 26px;
             line-height: 1;
             animation: walkAround 12s infinite linear, bounce 0.4s infinite alternate;
         }
 
+        /* 뒤따라오는 공룡 간격을 여유 있게 띄움 */
         .pixel-dino {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 24px;
             height: 32px;
-            font-size: 28px;
+            font-size: 26px;
             line-height: 1;
             animation: walkAroundDino 12s infinite linear, bounce 0.4s infinite alternate 0.1s;
         }
 
         @keyframes walkAround {
-            0% { left: 8%; transform: scaleX(1); }
+            0% { left: 15%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
-            50% { left: 92%; transform: scaleX(-1); }
+            50% { left: 85%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
-            100% { left: 8%; transform: scaleX(1); }
+            100% { left: 15%; transform: scaleX(1); }
         }
 
         @keyframes walkAroundDino {
-            0% { left: 2%; transform: scaleX(1); }
+            0% { left: 2%; transform: scaleX(1); } /* 13% 차이 확보 */
             48% { transform: scaleX(1); }
-            50% { left: 86%; transform: scaleX(-1); }
+            50% { left: 72%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
             100% { left: 2%; transform: scaleX(1); }
         }
@@ -226,7 +248,7 @@
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 20px;
         }
 
         @media (max-width: 850px) {
@@ -238,7 +260,7 @@
         .stat-container {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
         }
 
         .stat-row {
@@ -246,24 +268,34 @@
             align-items: center;
             justify-content: space-between;
             font-family: 'Press Start 2P', cursive;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             line-height: 1.4;
-            gap: 10px;
+            gap: 8px;
         }
 
         .stat-label {
             color: #ffffff;
             font-weight: bold;
-            width: 170px;
+            width: 140px;
             flex-shrink: 0;
             text-shadow: 1px 1px #000;
+        }
+
+        @media (max-width: 480px) {
+            .stat-label {
+                width: 110px;
+                font-size: 0.62rem;
+            }
+            .stat-row {
+                font-size: 0.65rem;
+            }
         }
 
         .stat-bar-outer {
             flex-grow: 1;
             background-color: #111;
             border: 2px solid #39FF14;
-            height: 20px;
+            height: 18px;
             box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
             position: relative;
         }
@@ -277,7 +309,7 @@
         .stat-val {
             color: #FFD700;
             font-weight: bold;
-            width: 45px;
+            width: 40px;
             text-align: right;
             flex-shrink: 0;
             text-shadow: 1px 1px #000;
@@ -288,9 +320,9 @@
             background-color: #222;
             color: #FFD700;
             border: 1px solid #FFD700;
-            padding: 4px 10px;
-            margin: 4px;
-            font-size: 0.95rem;
+            padding: 4px 8px;
+            margin: 3px;
+            font-size: 0.85rem;
             font-weight: bold;
         }
 
@@ -298,7 +330,7 @@
         .quest-card {
             background-color: #111;
             border: 2px solid #39FF14;
-            padding: 18px;
+            padding: 16px;
             margin-bottom: 20px;
             position: relative;
         }
@@ -309,7 +341,7 @@
             align-items: center;
             color: #FFD700;
             font-weight: bold;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             border-bottom: 1px solid #333;
             padding-bottom: 6px;
             margin-bottom: 10px;
@@ -317,23 +349,23 @@
 
         .quest-tag {
             color: #00ffff;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .quest-meta {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 12px;
         }
 
         .quest-platform {
             display: inline-block;
             color: #aaa;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             background-color: #222;
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
             border: 1px solid #444;
         }
@@ -342,7 +374,7 @@
             display: inline-block;
             color: #FFD700;
             font-family: 'VT323', monospace;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             letter-spacing: 1px;
         }
 
@@ -350,12 +382,12 @@
             margin-bottom: 8px;
             display: flex;
             align-items: flex-start;
+            font-size: 0.95rem;
         }
 
-        /* 이모지 정렬 폭 고정 */
         .quest-icon {
             display: inline-block;
-            width: 28px;
+            width: 24px;
             text-align: center;
             flex-shrink: 0;
             margin-right: 4px;
@@ -369,44 +401,44 @@
         .key-result-box {
             background-color: #1a1a00;
             border: 1px dashed #FFD700;
-            padding: 10px 14px;
+            padding: 8px 12px;
             margin-top: 10px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #ffffff;
         }
 
         /* === 4. ACHIEVEMENTS SECTION === */
         .achievement-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
         }
 
         .achievement-card {
             border: 2px dashed #FFD700;
-            padding: 15px;
+            padding: 12px;
             background-color: #050505;
         }
 
         .achievement-title {
             color: #ffffff;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .highlight-val {
             color: #39FF14;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
         }
 
         /* === FOOTER === */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             color: #888;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border-top: 2px solid #222;
         }
     </style>
@@ -479,7 +511,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 25px;">
+        <div style="margin-top: 20px;">
             <span class="badge-tag">#도전의아이콘</span>
             <span class="badge-tag">#긍정적사고</span>
             <span class="badge-tag">#책임감</span>
