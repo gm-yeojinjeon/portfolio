@@ -2,644 +2,455 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- 검색엔진 노출 완전 차단 (noindex, nofollow) -->
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YEOJIN JEON - PORTFOLIO</title>
     
-    <!-- Retro Pixel Font & Nanum Gothic -->
+    <!-- Fonts & Tailwind CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Pretendard:wght@300;400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pixel: {
+                            green: '#39FF14',
+                            gold: '#FFD700',
+                            pink: '#FF0055',
+                            cyan: '#00FFFF',
+                            bg: '#0a0a0c',
+                            card: '#121216',
+                            border: '#1f1f28'
+                        }
+                    },
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        code: ['"Fira Code"', 'monospace'],
+                        sans: ['Pretendard', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* === RESET & BASE STYLES === */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: #000000;
-            color: #39FF14; /* 네온 그린 */
-            font-family: 'Nanum Gothic', sans-serif;
-            font-size: 18px;
-            line-height: 1.6;
-            padding: 15px;
-            padding-top: 80px;
-            overflow-x: hidden;
-        }
-
-        /* Scanline CRT Effect */
-        body::before {
-            content: " ";
-            display: block;
+        /* CRT & Glow Effects */
+        .scanline {
             position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
             background-size: 100% 4px;
-            z-index: 999;
+            z-index: 50;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.6;
         }
 
-        a {
-            color: #FFD700;
-            text-decoration: none;
-        }
+        .glow-green { text-shadow: 0 0 10px rgba(57, 255, 20, 0.6); }
+        .glow-gold { text-shadow: 0 0 10px rgba(255, 215, 0, 0.6); }
+        .box-glow { box-shadow: 0 0 20px rgba(57, 255, 20, 0.15); }
+        .box-glow-hover:hover { box-shadow: 0 0 25px rgba(57, 255, 20, 0.3); }
 
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* === STICKY QUICK NAV === */
-        .sticky-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(10, 10, 10, 0.95);
-            border-bottom: 4px solid #39FF14;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 8px;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(57, 255, 20, 0.3);
-        }
-
-        .nav-btn {
-            background-color: #000;
-            color: #FFD700;
-            border: 2px solid #FFD700;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.8rem;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 600px) {
-            .sticky-nav {
-                gap: 5px;
-                padding: 8px 4px;
-            }
-            .nav-btn {
-                font-size: 0.65rem;
-                padding: 6px 8px;
-                border-width: 1px;
-            }
-        }
-
-        .nav-btn:hover {
-            background-color: #FFD700;
-            color: #000;
-            box-shadow: 0 0 10px #FFD700;
-        }
-
-        /* === PIXELATED BOX CONTAINER === */
-        .pixel-box {
-            background-color: #0a0a0a;
-            border: 4px solid #39FF14;
-            box-shadow: 
-                0 0 0 4px #000000, 
-                0 0 0 8px #FFD700,
-                0 0 15px rgba(57, 255, 20, 0.4);
-            padding: 20px;
-            margin-bottom: 35px;
-            position: relative;
-        }
-
-        .pixel-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
-            color: #FFD700;
-            text-shadow: 2px 2px #000000;
-            margin-bottom: 20px;
-            border-bottom: 2px dashed #39FF14;
-            padding-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        /* === 1. TITLE / COVER SECTION === */
-        #hero {
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-top: 5px;
-        }
-
-        .hero-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.8rem;
-            color: #FFD700;
-            text-shadow: 3px 3px #ff0055, -3px -3px #00ffff;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 2.2rem;
-            }
-        }
-
-        .hero-subtitle {
-            font-family: 'Nanum Gothic', sans-serif;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #ffffff;
-            margin-bottom: 35px;
-        }
-
-        .press-start-btn {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1rem;
-            background-color: #FFD700;
-            color: #000000;
-            padding: 12px 24px;
-            border: 4px solid #ffffff;
-            cursor: pointer;
-            animation: blink 1s infinite;
-            box-shadow: 4px 4px 0px #39FF14;
-            transition: transform 0.1s;
-            z-index: 2;
-        }
-
-        .press-start-btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0px #39FF14;
-        }
-
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0.3; }
-        }
-
-        /* === PIXEL CHARACTER & DINO ANIMATION === */
-        .pixel-character-container {
-            position: absolute;
-            bottom: 12px;
-            left: 0;
-            width: 100%;
-            height: 40px;
-            pointer-events: none;
-        }
-
-        .pixel-character {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 24px;
-            height: 32px;
-            font-size: 26px;
-            line-height: 1;
-            animation: walkAround 12s infinite linear, bounce 0.4s infinite alternate;
-        }
-
-        .pixel-dino {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 24px;
-            height: 32px;
-            font-size: 26px;
-            line-height: 1;
-            animation: walkAroundDino 12s infinite linear, bounce 0.4s infinite alternate 0.1s;
-        }
-
+        /* Animation */
         @keyframes walkAround {
-            0% { left: 15%; transform: scaleX(1); }
+            0% { left: 5%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
-            50% { left: 85%; transform: scaleX(-1); }
+            50% { left: 88%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
-            100% { left: 15%; transform: scaleX(1); }
+            100% { left: 5%; transform: scaleX(1); }
         }
-
         @keyframes walkAroundDino {
-            0% { left: 2%; transform: scaleX(1); }
+            0% { left: 0%; transform: scaleX(1); }
             48% { transform: scaleX(1); }
-            50% { left: 72%; transform: scaleX(-1); }
+            50% { left: 83%; transform: scaleX(-1); }
             98% { transform: scaleX(-1); }
-            100% { left: 2%; transform: scaleX(1); }
+            100% { left: 0%; transform: scaleX(1); }
         }
-
         @keyframes bounce {
-            0% { bottom: 0px; }
-            100% { bottom: 6px; }
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
         }
 
-        /* === 2. PROFILE / STATS SECTION (완벽한 일직선 정렬) === */
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .anim-char { animation: walkAround 14s infinite linear; }
+        .anim-dino { animation: walkAroundDino 14s infinite linear; }
+        .anim-bounce { animation: bounce 0.4s infinite alternate; }
 
-        @media (max-width: 850px) {
-            .profile-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .stat-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .stat-row {
-            display: flex;
-            align-items: center;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7rem;
-            line-height: 1.4;
-            gap: 10px;
-        }
-
-        .stat-label {
-            color: #ffffff;
-            font-weight: bold;
-            width: 140px; /* 고정 영역 지정으로 시작점 통일 */
-            flex-shrink: 0;
-            text-shadow: 1px 1px #000;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 480px) {
-            .stat-label {
-                width: 110px;
-                font-size: 0.52rem; /* 모바일 대응 글자 조절 */
-            }
-            .stat-row {
-                font-size: 0.58rem;
-                gap: 6px;
-            }
-        }
-
-        .stat-bar-outer {
-            flex-grow: 1; /* 바 전체 길이를 동일하게 채움 */
-            background-color: #111;
-            border: 2px solid #39FF14;
-            height: 16px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .stat-bar-inner {
-            height: 100%;
-            background-color: #39FF14;
-            box-shadow: 0 0 8px #39FF14;
-        }
-
-        .stat-val {
-            color: #FFD700;
-            font-weight: bold;
-            width: 38px;
-            text-align: right;
-            flex-shrink: 0;
-            text-shadow: 1px 1px #000;
-        }
-
-        .badge-tag {
-            display: inline-block;
-            background-color: #222;
-            color: #FFD700;
-            border: 1px solid #FFD700;
-            padding: 4px 8px;
-            margin: 3px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        /* === 3. QUEST / PROJECT SECTION === */
-        .quest-card {
-            background-color: #111;
-            border: 2px solid #39FF14;
-            padding: 16px;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .quest-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #FFD700;
-            font-weight: bold;
-            font-size: 1.15rem;
-            border-bottom: 1px solid #333;
-            padding-bottom: 6px;
-            margin-bottom: 10px;
-        }
-
-        .quest-tag {
-            color: #00ffff;
-            font-size: 0.95rem;
-        }
-
-        .quest-meta {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .quest-platform {
-            display: inline-block;
-            color: #aaa;
-            font-size: 0.8rem;
-            background-color: #222;
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid #444;
-        }
-
-        .quest-period {
-            display: inline-block;
-            color: #FFD700;
-            font-family: 'VT323', monospace;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
-
-        .quest-step {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: flex-start;
-            font-size: 0.95rem;
-        }
-
-        .quest-icon {
-            display: inline-block;
-            width: 24px;
-            text-align: center;
-            flex-shrink: 0;
-            margin-right: 4px;
-        }
-
-        .quest-step-title {
-            color: #ff0055;
-            font-weight: bold;
-        }
-
-        .key-result-box {
-            background-color: #1a1a00;
-            border: 1px dashed #FFD700;
-            padding: 8px 12px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #ffffff;
-        }
-
-        /* === 4. ACHIEVEMENTS SECTION === */
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .achievement-card {
-            border: 2px dashed #FFD700;
-            padding: 12px;
-            background-color: #050505;
-        }
-
-        .achievement-title {
-            color: #ffffff;
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .highlight-val {
-            color: #39FF14;
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        /* === FOOTER === */
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #888;
-            font-size: 0.85rem;
-            border-top: 2px solid #222;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: #39FF14; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
-<body>
+<body class="bg-pixel-bg text-gray-200 font-sans leading-relaxed min-h-screen relative overflow-x-hidden">
 
-    <!-- STICKY NAV -->
-    <nav class="sticky-nav">
-        <button class="nav-btn" onclick="scrollToId('main-content')">CHARACTER</button>
-        <button class="nav-btn" onclick="scrollToId('project-section')">PROJECT</button>
-        <button class="nav-btn" onclick="scrollToId('achievement-section')">ACHIEVEMENTS</button>
+    <!-- CRT Effect Overlay -->
+    <div class="scanline"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full bg-pixel-bg/90 backdrop-blur-md border-b border-pixel-green/40 z-40 py-3 px-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="font-pixel text-pixel-gold text-sm tracking-wider flex items-center gap-2 cursor-pointer" onclick="scrollToId('hero')">
+                <span class="text-pixel-green">▶</span> YEOJIN.GM
+            </div>
+            <div class="flex gap-2 sm:gap-4 font-pixel text-[10px] sm:text-xs">
+                <button onclick="scrollToId('character')" class="px-3 py-1.5 border border-pixel-green/50 text-pixel-green hover:bg-pixel-green hover:text-black transition-all rounded">CHARACTER</button>
+                <button onclick="scrollToId('project')" class="px-3 py-1.5 border border-pixel-gold/50 text-pixel-gold hover:bg-pixel-gold hover:text-black transition-all rounded">PROJECTS</button>
+                <button onclick="scrollToId('achievement')" class="px-3 py-1.5 border border-pixel-cyan/50 text-pixel-cyan hover:bg-pixel-cyan hover:text-black transition-all rounded">ACHIEVEMENTS</button>
+            </div>
+        </div>
     </nav>
 
-    <!-- SECTION 1: COVER / HERO -->
-    <section id="hero" class="pixel-box">
-        <div class="hero-title">GAME MASTER<br>PORTFOLIO</div>
-        <div class="hero-subtitle">전여진</div>
-        <button class="press-start-btn" onclick="scrollToId('main-content')">PRESS START</button>
+    <main class="max-w-5xl mx-auto px-4 pt-24 pb-16 space-y-16">
 
-        <!-- Walking Pixel Character & Following Dino at Bottom -->
-        <div class="pixel-character-container">
-            <div class="pixel-character">👾</div>
-            <div class="pixel-dino">🦖</div>
-        </div>
-    </section>
+        <!-- SECTION 1: HERO COVER -->
+        <section id="hero" class="relative bg-pixel-card border-2 border-pixel-green/60 rounded-xl p-8 sm:p-12 text-center box-glow overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-40 h-40 bg-pixel-green/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <span class="font-code text-xs text-pixel-cyan tracking-widest uppercase mb-2 block">// GAME MASTER & PROJECT MANAGER</span>
+            <h1 class="font-pixel text-2xl sm:text-4xl text-pixel-gold glow-gold mb-4 leading-tight">
+                GAME MASTER<br><span class="text-pixel-green glow-green">PORTFOLIO</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-bold text-white mb-8">전여진 <span class="text-sm font-normal text-gray-400">(YEOJIN JEON)</span></p>
 
-    <!-- SECTION 2: CHARACTER -->
-    <section id="main-content" class="pixel-box">
-        <div class="pixel-title">[ CHARACTER ]</div>
-        
-        <div class="profile-grid">
-            <!-- Basic Info -->
-            <div>
-                <p><span style="color:#FFD700; font-weight:bold;">NAME:</span> 전여진</p>
-                <p><span style="color:#FFD700; font-weight:bold;">CLASS:</span> GAME MASTER (GM)</p>
-                <p><span style="color:#FFD700; font-weight:bold;">BIRTH:</span> 1995.10.16</p>
-                <p><span style="color:#FFD700; font-weight:bold;">CONTACT:</span> 010-8033-7712</p>
-                <p><span style="color:#FFD700; font-weight:bold;">EMAIL:</span> <a href="mailto:mittyeojin@gmail.com" style="color:#39FF14;">mittyeojin@gmail.com</a></p>
-                <p><span style="color:#FFD700; font-weight:bold;">EDU:</span> Manitoba Institute of Trades and Technology (Network and Computer Technology)</p>
-                <p><span style="color:#FFD700; font-weight:bold;">SKILL:</span> TOEIC 855 / 비즈니스 영어</p>
-            </div>
+            <button onclick="scrollToId('character')" class="inline-block font-pixel text-xs sm:text-sm bg-pixel-gold text-black px-6 py-3 rounded border-2 border-white font-bold hover:bg-yellow-400 hover:scale-105 transition-all shadow-lg active:translate-y-1">
+                PRESS START ↵
+            </button>
 
-            <!-- RPG Stats (일직선 정렬 최적화) -->
-            <div class="stat-container">
-                <div class="stat-row">
-                    <span class="stat-label">COMMUNICATION</span>
-                    <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 100%;"></div></div>
-                    <span class="stat-val">MAX</span>
+            <!-- Pixel Animation Line -->
+            <div class="relative w-full h-10 mt-12 border-b border-pixel-border">
+                <div class="anim-char absolute bottom-1 flex items-center">
+                    <span class="text-2xl anim-bounce">👾</span>
                 </div>
-                <div class="stat-row">
-                    <span class="stat-label">GM SKILL</span>
-                    <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 90%;"></div></div>
-                    <span class="stat-val">90</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">LAUNCHING</span>
-                    <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 80%;"></div></div>
-                    <span class="stat-val">80</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">POLICY</span>
-                    <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 85%;"></div></div>
-                    <span class="stat-val">85</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">DUTY</span>
-                    <div class="stat-bar-outer"><div class="stat-bar-inner" style="width: 100%;"></div></div>
-                    <span class="stat-val">MAX</span>
+                <div class="anim-dino absolute bottom-1 flex items-center">
+                    <span class="text-2xl anim-bounce" style="animation-delay: 0.1s;">🦖</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div style="margin-top: 20px;">
-            <span class="badge-tag">#도전의아이콘</span>
-            <span class="badge-tag">#긍정적사고</span>
-            <span class="badge-tag">#책임감</span>
-            <span class="badge-tag">#서비스마인드</span>
-            <span class="badge-tag">#친화력</span>
-            <span class="badge-tag">#꼼꼼함</span>
-        </div>
-    </section>
+        <!-- SECTION 2: CHARACTER / PROFILE -->
+        <section id="character" class="bg-pixel-card border border-pixel-border rounded-xl p-6 sm:p-8 box-glow-hover transition-all">
+            <h2 class="font-pixel text-sm sm:text-base text-pixel-gold border-b border-pixel-border pb-3 mb-6 flex items-center gap-2">
+                <span class="text-pixel-green">[01]</span> CHARACTER STATUS
+            </h2>
 
-    <!-- SECTION 3: PROJECT -->
-    <section id="project-section" class="pixel-box">
-        <div class="pixel-title">[ PROJECT ]</div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- User Information -->
+                <div class="space-y-3 font-code text-sm">
+                    <div class="flex items-center gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24">NAME</span>
+                        <span class="text-white">전여진</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24">CLASS</span>
+                        <span class="text-pixel-green font-semibold">GAME MASTER (GM) / PM</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24">BIRTH</span>
+                        <span class="text-gray-300">1995.10.16</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24">CONTACT</span>
+                        <span class="text-gray-300">010-8033-7712</span>
+                    </div>
+                    <div class="flex items-center gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24">EMAIL</span>
+                        <a href="mailto:mittyeojin@gmail.com" class="text-pixel-green hover:underline">mittyeojin@gmail.com</a>
+                    </div>
+                    <div class="flex items-start gap-2 border-b border-pixel-border/50 pb-1.5">
+                        <span class="text-pixel-gold font-bold w-24 flex-shrink-0">EDU</span>
+                        <span class="text-gray-300 text-xs leading-normal">Manitoba Institute of Trades and Technology<br>(Network and Computer Technology)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-pixel-gold font-bold w-24">SKILL</span>
+                        <span class="text-pixel-cyan">TOEIC 855 / 비즈니스 영어</span>
+                    </div>
+                </div>
 
-        <!-- Quest 1 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>01. Dragon Nest</span>
-                <span class="quest-tag">[PM]</span>
+                <!-- Stats Bar -->
+                <div class="space-y-4 font-pixel text-[11px]">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300">COMMUNICATION</span>
+                            <span class="text-pixel-gold">MAX</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-900 rounded border border-pixel-green/40 p-0.5">
+                            <div class="h-full bg-pixel-green rounded" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300">GM SKILL</span>
+                            <span class="text-pixel-gold">90%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-900 rounded border border-pixel-green/40 p-0.5">
+                            <div class="h-full bg-pixel-green rounded" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300">POLICY & OPERATION</span>
+                            <span class="text-pixel-gold">85%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-900 rounded border border-pixel-green/40 p-0.5">
+                            <div class="h-full bg-pixel-green rounded" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300">LAUNCHING</span>
+                            <span class="text-pixel-gold">80%</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-900 rounded border border-pixel-green/40 p-0.5">
+                            <div class="h-full bg-pixel-green rounded" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-gray-300">RESPONSIBILITY</span>
+                            <span class="text-pixel-gold">MAX</span>
+                        </div>
+                        <div class="w-full h-3 bg-gray-900 rounded border border-pixel-green/40 p-0.5">
+                            <div class="h-full bg-pixel-green rounded" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="quest-meta">
-                <span class="quest-platform">🖥️ PC</span>
-                <span class="quest-period">2018.05 ~ 2021.05</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 해외 서비스의 유저 이탈을 방지하고 매출 구조 개선 필요.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> VoC 기반 유저 현황 파악, 대규모 업데이트 대응 마케팅 기획 및 연계 이벤트 진행.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 유저 리텐션 증대 & 재런칭 이후 <strong style="color:#39FF14;">역대 최고 매출 달성</strong>
-            </div>
-        </div>
 
-        <!-- Quest 2 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>02. 데카론M</span>
-                <span class="quest-tag">[GM]</span>
+            <!-- Tags -->
+            <div class="mt-8 pt-4 border-t border-pixel-border/60 flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#도전의아이콘</span>
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#긍정적사고</span>
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#책임감</span>
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#서비스마인드</span>
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#친화력</span>
+                <span class="px-3 py-1 bg-pixel-border/50 border border-pixel-gold/40 text-pixel-gold text-xs rounded-full">#꼼꼼함</span>
             </div>
-            <div class="quest-meta">
-                <span class="quest-platform">📱 모바일</span>
-                <span class="quest-period">2022.10 ~ 2024.06</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 서비스 정기 점검, 장애 대응 및 유저 만족도 향상 과제.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> 라이브 점검 관리, 운영 정책 및 고객센터 CS 프로세스 개선안 제안.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> CS 프로세스 개선으로 <strong style="color:#39FF14;">유저 서비스 만족도 증대</strong> & 안정적 서비스 유지
-            </div>
-        </div>
+        </section>
 
-        <!-- Quest 3 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>03. Dekaron G</span>
-                <span class="quest-tag">[GM]</span>
+        <!-- SECTION 3: PROJECTS -->
+        <section id="project" class="space-y-6">
+            <div class="flex justify-between items-end border-b border-pixel-border pb-3">
+                <h2 class="font-pixel text-sm sm:text-base text-pixel-gold flex items-center gap-2">
+                    <span class="text-pixel-green">[02]</span> QUEST & PROJECTS
+                </h2>
+                <span class="font-code text-xs text-gray-500">TOTAL: 07</span>
             </div>
-            <div class="quest-meta">
-                <span class="quest-platform">🌐 멀티플랫폼</span>
-                <span class="quest-period">2022.10 ~ 2024.08</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 글로벌 타겟 유저 리텐션 유지 및 비정상 어뷰징 대응.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> 정보 제공형 GM 콘텐츠 제작, 운영 이벤트 진행, 임의 환불 및 비정상 유저 단속.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 어뷰징 단속으로 <strong style="color:#39FF14;">매출 피해 최소화</strong> & 쾌적한 글로벌 플레이 환경 구축
-            </div>
-        </div>
 
-        <!-- Quest 4 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>04. Friends Match: Tower Defense</span>
-                <span class="quest-tag">[GM]</span>
-            </div>
-            <div class="quest-meta">
-                <span class="quest-platform">📱 모바일</span>
-                <span class="quest-period">2024.06 ~ 2024.11</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 신규 글로벌 게임 런칭을 위한 운영 전반 프로세스 부재.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> 운영 프로세스 수립, 운영툴 테스트, 글로벌 커뮤니티 개설 및 리스크 사전 검토.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 성공적인 글로벌 런칭 및 <strong style="color:#39FF14;">게임 콘텐츠 완성도 향상</strong> 기여
-            </div>
-        </div>
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <!-- Quest 5 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>05. BTS Island: In The Seom</span>
-                <span class="quest-tag">[GM]</span>
-            </div>
-            <div class="quest-meta">
-                <span class="quest-platform">📱 모바일</span>
-                <span class="quest-period">2025.03 ~ 2026.06</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 글로벌 라이브 서비스 운영 고도화 및 팬덤 커뮤니티 활성화.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> 운영툴 개선, 망분리 보안 가이드 구축, 팬덤 맞춤형 아티스트 생일 콘텐츠 기획.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 축전 영상 업로드 당월 <strong style="color:#39FF14;">평균 RT 12.7배 / 노출 수 5.3배 증가</strong> 달성
-            </div>
-        </div>
+                <!-- Quest Card 1 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">01. Dragon Nest</h3>
+                            <span class="font-code text-xs bg-pixel-pink/20 text-pixel-pink px-2 py-0.5 rounded border border-pixel-pink/40">PM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>🖥️ PC</span>
+                            <span class="text-pixel-gold">2018.05 ~ 2021.05</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 해외 서비스 유저 이탈 방지 및 매출 구조 개선 필요.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> VoC 기반 유저 분석, 대규모 업데이트 연계 마케팅 기획 및 이벤트 진행.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 유저 리텐션 증대 & 재런칭 이후 <strong class="text-pixel-green">역대 최고 매출 달성</strong>
+                    </div>
+                </div>
 
-        <!-- Quest 6 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>06. Arkheron</span>
-                <span class="quest-tag">[GM]</span>
-            </div>
-            <div class="quest-meta">
-                <span class="quest-platform">🌐 멀티플랫폼</span>
-                <span class="quest-period">2026.06 ~ NOW</span>
-            </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 플랫폼별 특성 대응, CBT 운영 프로세스 수립 및 유저 소통 강화.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> 영문 공지 현지화, 공식 라이브 방송 진행, 유튜브 숏츠 기획 및 GM 이벤트 실시.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 긍정적 브랜드 인지도 형성, <strong style="color:#39FF14;">CBT 참여 유도 & 유저 접점 극대화</strong>
-            </div>
-        </div>
+                <!-- Quest Card 2 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">02. 데카론M</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>📱 Mobile</span>
+                            <span class="text-pixel-gold">2022.10 ~ 2024.06</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 정기 점검 관리, 라이브 장애 대응 및 유저 만족도 제고 과제.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> 라이브 점검 프로세스 구축, 운영 정책 및 고객센터 CS 개선안 제안.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> CS 프로세스 개선으로 <strong class="text-pixel-green">유저 서비스 만족도 증대</strong> & 서비스 안정화
+                    </div>
+                </div>
 
-        <!-- Quest 7 -->
-        <div class="quest-card">
-            <div class="quest-header">
-                <span>07. Final Third</span>
-                <span class="quest-tag">[GM]</span>
+                <!-- Quest Card 3 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">03. Dekaron G</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>🌐 Cross-Platform</span>
+                            <span class="text-pixel-gold">2022.10 ~ 2024.08</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 글로벌 타겟 유저 리텐션 유지 및 어뷰징 대응.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> 정보 제공형 GM 콘텐츠 제작, 운영 이벤트 및 임의 환불/어뷰징 단속 강화.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 어뷰징 제재로 <strong class="text-pixel-green">매출 피해 최소화</strong> & 쾌적한 글로벌 환경 구축
+                    </div>
+                </div>
+
+                <!-- Quest Card 4 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">04. Friends Match</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>📱 Mobile</span>
+                            <span class="text-pixel-gold">2024.06 ~ 2024.11</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 신규 글로벌 게임 런칭을 위한 운영 전반 체계 부재.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> 운영 프로세스 수립, 툴 테스트, 글로벌 커뮤니티 개설 및 리스크 사전 검토.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 성공적인 글로벌 런칭 및 <strong class="text-pixel-green">게임 콘텐츠 완성도 향상</strong> 기여
+                    </div>
+                </div>
+
+                <!-- Quest Card 5 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">05. BTS Island: In The Seom</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>📱 Mobile</span>
+                            <span class="text-pixel-gold">2025.03 ~ 2026.06</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 글로벌 라이브 서비스 고도화 및 팬덤 커뮤니티 활성화.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> 운영툴 개선, 망분리 보안 가이드 구축, 아티스트 생일 맞춤형 콘텐츠 기획.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 축전 영상 업로드 당월 <strong class="text-pixel-green">평균 RT 12.7배 / 노출 5.3배 증가</strong>
+                    </div>
+                </div>
+
+                <!-- Quest Card 6 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">06. Arkheron</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>🌐 Cross-Platform</span>
+                            <span class="text-pixel-gold">2026.06 ~ NOW</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 멀티플랫폼 대응, CBT 운영 프로세스 수립 및 소통 강화.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> 영문 공지 현지화, 공식 라이브 방송 진행, 유튜브 숏츠 기획 및 GM 이벤트.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 브랜드 인지도 형성, <strong class="text-pixel-green">CBT 참여 유도 & 유저 접점 극대화</strong>
+                    </div>
+                </div>
+
+                <!-- Quest Card 7 -->
+                <div class="bg-pixel-card border border-pixel-border rounded-xl p-5 hover:border-pixel-green/60 transition-all flex flex-col justify-between md:col-span-2">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-lg text-white">07. Final Third</h3>
+                            <span class="font-code text-xs bg-pixel-green/20 text-pixel-green px-2 py-0.5 rounded border border-pixel-green/40">GM</span>
+                        </div>
+                        <div class="font-code text-xs text-gray-400 mb-4 flex gap-3">
+                            <span>🌐 Cross-Platform</span>
+                            <span class="text-pixel-gold">2026.09 ~ NOW</span>
+                        </div>
+                        <div class="space-y-2 text-sm text-gray-300 mb-4">
+                            <p><span class="text-pixel-pink font-bold">💥 Issues:</span> 멀티 플랫폼 환경에서의 CBT 운영 프로세스 구축 및 소통 체계 수립.</p>
+                            <p><span class="text-pixel-cyan font-bold">🛠 Strategy:</span> CBT 프로세스 단계별 수립, 공식 공지사항 및 유저 밀착형 운영 콘텐츠 작성.</p>
+                        </div>
+                    </div>
+                    <div class="bg-black/60 border border-pixel-gold/30 rounded p-3 text-xs">
+                        <span class="text-pixel-gold font-bold">🎯 KEY RESULT:</span> 테스트 기간 동안 <strong class="text-pixel-green">안정적인 정보 전달 및 소통 기반 마련</strong>
+                    </div>
+                </div>
+
             </div>
-            <div class="quest-meta">
-                <span class="quest-platform">🌐 멀티플랫폼</span>
-                <span class="quest-period">2026.09 ~ NOW</span>
+        </section>
+
+        <!-- SECTION 4: ACHIEVEMENTS -->
+        <section id="achievement" class="bg-pixel-card border border-pixel-border rounded-xl p-6 sm:p-8 box-glow-hover transition-all">
+            <h2 class="font-pixel text-sm sm:text-base text-pixel-gold border-b border-pixel-border pb-3 mb-6 flex items-center gap-2">
+                <span class="text-pixel-green">[03]</span> ACHIEVEMENTS
+            </h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-black/40 border-2 border-dashed border-pixel-gold/50 rounded-lg p-4 hover:border-pixel-gold transition-all">
+                    <div class="font-bold text-pixel-gold text-base mb-2 flex items-center gap-2">
+                        🏆 Dragon Nest
+                    </div>
+                    <p class="text-sm text-gray-300 leading-snug">
+                        서비스 재런칭 이후 <span class="text-pixel-green font-bold">역대 최고 매출 달성</span>
+                    </p>
+                </div>
+
+                <div class="bg-black/40 border-2 border-dashed border-pixel-gold/50 rounded-lg p-4 hover:border-pixel-gold transition-all">
+                    <div class="font-bold text-pixel-gold text-base mb-2 flex items-center gap-2">
+                        🏆 BTS Island: In The Seom
+                    </div>
+                    <p class="text-sm text-gray-300 leading-snug">
+                        축전 영상 당월 <span class="text-pixel-green font-bold">평균 RT 12.7배 / 노출 5.3배 증가</span>
+                    </p>
+                </div>
+
+                <div class="bg-black/40 border-2 border-dashed border-pixel-gold/50 rounded-lg p-4 hover:border-pixel-gold transition-all">
+                    <div class="font-bold text-pixel-gold text-base mb-2 flex items-center gap-2">
+                        🏆 Dekaron G
+                    </div>
+                    <p class="text-sm text-gray-300 leading-snug">
+                        어뷰징 및 임의 환불 집중 단속으로 <span class="text-pixel-green font-bold">매출 피해 최소화</span>
+                    </p>
+                </div>
+
+                <div class="bg-black/40 border-2 border-dashed border-pixel-gold/50 rounded-lg p-4 hover:border-pixel-gold transition-all">
+                    <div class="font-bold text-pixel-gold text-base mb-2 flex items-center gap-2">
+                        🏆 Friends Match: TD
+                    </div>
+                    <p class="text-sm text-gray-300 leading-snug">
+                        글로벌 신규 런칭 성공 및 <span class="text-pixel-green font-bold">운영 프로세스 완비</span>
+                    </p>
+                </div>
             </div>
-            <div class="quest-step"><div><span class="quest-icon">💥</span><span class="quest-step-title">퀘스트 발생:</span> 멀티 플랫폼, CBT 운영 프로세스 수립 및 유저 소통 강화.</div></div>
-            <div class="quest-step"><div><span class="quest-icon">🛠</span><span class="quest-step-title">공략법:</span> CBT 프로세스 수립, 공지사항 및 운영 콘텐츠 작성.</div></div>
-            <div class="key-result-box">
-                🎯 <strong style="color:#FFD700;">KEY RESULT:</strong> 테스트 기간 <strong style="color:#39FF14;">안정적인 정보 전달 기반 마련</strong>
-            </div>
-        </div>
-    </section>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-pixel-border py-8 text-center text-xs font-code text-gray-500">
+        <p>© YEOJIN JEON. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToId(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
